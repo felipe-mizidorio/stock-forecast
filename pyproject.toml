@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=75.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stock-forecast"
+version = "0.1.0"
+description = "End-to-end MLOps pipeline for stock market forecasting"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "yfinance>=0.2.40",
+    "pandas>=2.2",
+    "numpy>=1.26",
+    "scikit-learn>=1.5",
+    "torch>=2.3",
+    "mlflow>=2.14",
+    "dvc>=3.51",
+    "fastapi>=0.111",
+    "uvicorn>=0.30",
+    "pydantic-settings>=2.3",
+    "joblib>=1.4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.2",
+    "ruff>=0.5",
+    "mypy>=1.10",
+    "pre-commit>=3.7",
+    "nbstripout>=0.7",
+]
+airflow = [
+    "apache-airflow>=2.9",
+]
+
+[tool.setuptools.packages.find]
+include = ["src*", "app*"]
+
+[tool.ruff]
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "N", "UP", "B", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
